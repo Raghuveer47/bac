@@ -7,9 +7,16 @@ const port = 4000;
 
 app.use(express.json());
 app.use(cors({
-  origin: "https://re-rwya.onrender.com", // replace with actual frontend URL
+  origin: (origin, callback) => {
+    if (!origin || origin.includes('localhost') || origin.includes('onrender.com')) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true
 }));
+
 // Connect to MongoDB
 mongoose.connect('mongodb+srv://raghuveermustimalla:12345@cluster0.uotinum.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
   .then(() => console.log('MongoDB connected'))
