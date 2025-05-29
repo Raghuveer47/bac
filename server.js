@@ -7,7 +7,7 @@ const port = 4000;
 
 app.use(express.json());
 app.use(cors({
-  origin: "https://your-frontend-app.onrender.com", // replace with actual frontend URL
+  origin: "https://re-rwya.onrender.com", // replace with actual frontend URL
   credentials: true
 }));
 // Connect to MongoDB
